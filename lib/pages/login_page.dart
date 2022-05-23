@@ -18,7 +18,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController email = TextEditingController(text: '');
+  TextEditingController username = TextEditingController(text: '');
   TextEditingController password = TextEditingController(text: '');
 
   @override
@@ -27,12 +27,12 @@ class _LoginPageState extends State<LoginPage> {
     _autoLogin();
   }
   Future<void> _autoLogin()async{
-    await Future.delayed(const Duration(milliseconds: 50));
+    await Future.delayed(const Duration(milliseconds: 50));  //auto login
     if(PublicController.pc.pref!.getString('email')!=null
         && PublicController.pc.pref!.getString('password')!=null){
-      // await PublicController.pc.login(
-      //     PublicController.pc.pref!.getString('email')!,
-      //     PublicController.pc.pref!.getString('password')!);
+      await PublicController.pc.login(
+          PublicController.pc.pref!.getString('email')!,
+          PublicController.pc.pref!.getString('password')!);
     }
   }
 
@@ -168,8 +168,8 @@ class _LoginPageState extends State<LoginPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SizedBox(height: dSize(.04)),
-                                LoginTextFieldTile(controller: email,hintText: 'ইমেইল',
-                                  prefixIcon: LineAwesomeIcons.user,textInputType: TextInputType.emailAddress),
+                                LoginTextFieldTile(controller: username,hintText: 'ইউজার নাম',
+                                  prefixIcon: LineAwesomeIcons.user,textInputType: TextInputType.name),
                                 const Divider(),
                                 LoginTextFieldTile(controller: password,hintText: 'পাসওয়ার্ড',
                                     obscure: true,prefixIcon: LineAwesomeIcons.key),
@@ -194,7 +194,7 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ),
             ),
-            if(pc.loading.value) const LoadingWidget()
+            if(pc.loading.value==true) const LoadingWidget()
           ],
         );
       }
@@ -202,12 +202,16 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<void> verifyAndLogin(PublicController pc)async{
-    if(email.text.isNotEmpty && password.text.isNotEmpty){
-      if(email.text.contains('@') && email.text.contains('.com')){
-        //await pc.login(email.text, password.text);
-      }else{ showToast('Invalid email address');}
+    if(username.text.isNotEmpty && password.text.isNotEmpty){
+     await pc.login(username.text, password.text);
     }else{
       showToast('Field can\'t be empty');
     }
   }
+
+
+
+
 }
+
+
