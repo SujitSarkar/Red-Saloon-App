@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:red_saloon/pages/dashboard_page.dart';
 import '../controller/public_controller.dart';
 import '../model/home_menu_model.dart';
 import '../pages/booking_page.dart';
@@ -33,16 +34,19 @@ class HomeMenuTile extends StatelessWidget {
                 Get.to(()=>const ServicePage());
               }
               else if (model.title=='Expense'){
-                Get.to(()=> AllExpensePage());
+                Get.to(()=> const AllExpensePage());
               }
               else if (model.title=='Booking'){
-                Get.to(()=>BookingPage());
+                Get.to(()=>const BookingPage());
               }
               else if (model.title=='Stocks'){
-                Get.to(()=>StockReportPage());
+                Get.to(()=>const StockReportPage());
               }
               else if (model.title=='Daily Report'){
-                Get.to(()=>DailyReportpage());
+                Get.to(()=>const DailyReportpage());
+              }
+              else if (model.title=='Dashboard'){
+                Get.to(()=>const DashboardPage());
               }
 
             },

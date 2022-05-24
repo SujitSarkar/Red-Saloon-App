@@ -1,11 +1,8 @@
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-
 import 'package:intl/intl.dart';
-
 import '../model/customer_model.dart';
 import '../variables/color_variable.dart';
 import '../variables/config.dart';
