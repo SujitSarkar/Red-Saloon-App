@@ -1,38 +1,38 @@
 // To parse this JSON data, do
 //
-//     final dailyReportList = dailyReportListFromJson(jsonString);
+//     final dailyReportModel = dailyReportModelFromJson(jsonString);
 
 import 'dart:convert';
 
-DailyReportList dailyReportListFromJson(String str) => DailyReportList.fromJson(json.decode(str));
+DailyReportModel dailyReportModelFromJson(String str) => DailyReportModel.fromJson(json.decode(str));
 
 
-class DailyReportList {
-  DailyReportList({
+class DailyReportModel {
+  DailyReportModel({
     this.success,
     this.data,
   });
 
   bool? success;
-  DailyReport? data;
+  DailyM? data;
 
-  factory DailyReportList.fromJson(Map<String, dynamic> json) => DailyReportList(
+  factory DailyReportModel.fromJson(Map<String, dynamic> json) => DailyReportModel(
     success: json["success"],
-    data: DailyReport.fromJson(json["data"]),
+    data: DailyM.fromJson(json["data"]),
   );
 
 
 }
 
-class DailyReport {
-  DailyReport({
+class DailyM {
+  DailyM({
     this.paymenttype,
     this.salestype,
     this.total,
     this.expense,
     this.expensetype,
     this.purchase,
-    this.payments,
+    this.supplierPayments,
     this.bookingAdvance,
     this.productbooking,
   });
@@ -43,18 +43,18 @@ class DailyReport {
   List<BookingAdvance>? expense;
   List<dynamic>? expensetype;
   List<BookingAdvance>? purchase;
-  List<Payment>? payments;
+  List<SupplierPayment>? supplierPayments;
   List<BookingAdvance>? bookingAdvance;
   List<BookingAdvance>? productbooking;
 
-  factory DailyReport.fromJson(Map<String, dynamic> json) => DailyReport(
+  factory DailyM.fromJson(Map<String, dynamic> json) => DailyM(
     paymenttype: List<dynamic>.from(json["paymenttype"].map((x) => x)),
     salestype: List<dynamic>.from(json["salestype"].map((x) => x)),
     total: List<Total>.from(json["total"].map((x) => Total.fromJson(x))),
     expense: List<BookingAdvance>.from(json["expense"].map((x) => BookingAdvance.fromJson(x))),
     expensetype: List<dynamic>.from(json["expensetype"].map((x) => x)),
     purchase: List<BookingAdvance>.from(json["purchase"].map((x) => BookingAdvance.fromJson(x))),
-    payments: List<Payment>.from(json["payments"].map((x) => Payment.fromJson(x))),
+    supplierPayments: List<SupplierPayment>.from(json["supplier_payments"].map((x) => SupplierPayment.fromJson(x))),
     bookingAdvance: List<BookingAdvance>.from(json["booking_advance"].map((x) => BookingAdvance.fromJson(x))),
     productbooking: List<BookingAdvance>.from(json["productbooking"].map((x) => BookingAdvance.fromJson(x))),
   );
@@ -73,25 +73,21 @@ class BookingAdvance {
     amount: json["amount"],
   );
 
-  Map<String, dynamic> toJson() => {
-    "amount": amount,
-  };
+
 }
 
-class Payment {
-  Payment({
+class SupplierPayment {
+  SupplierPayment({
     this.paidAmount,
   });
 
   dynamic paidAmount;
 
-  factory Payment.fromJson(Map<String, dynamic> json) => Payment(
+  factory SupplierPayment.fromJson(Map<String, dynamic> json) => SupplierPayment(
     paidAmount: json["paid_amount"],
   );
 
-  Map<String, dynamic> toJson() => {
-    "paid_amount": paidAmount,
-  };
+
 }
 
 class Total {
@@ -105,7 +101,5 @@ class Total {
     saleTotal: json["sale_total"],
   );
 
-  Map<String, dynamic> toJson() => {
-    "sale_total": saleTotal,
-  };
+
 }

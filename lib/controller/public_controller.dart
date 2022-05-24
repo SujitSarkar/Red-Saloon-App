@@ -6,6 +6,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../model/booking_list_model.dart';
 import '../model/daily_report_model.dart';
+import '../model/daily_report_model.dart';
+import '../model/dashboard_model.dart';
 import '../model/expense_list_model.dart';
 import '../model/login_model.dart';
 import '../model/product_model.dart';
@@ -30,8 +32,11 @@ class PublicController extends GetxController{
   Rx<ServiceList> serviceList=ServiceList().obs;
   Rx<ExpenseList> expenseList=ExpenseList().obs;
   Rx<BookingListModel> bookingListModel=BookingListModel().obs;
-  Rx<StockReportList> stockReportListModel=StockReportList().obs;
-  Rx<DailyReportList> dailyReportList=DailyReportList().obs;
+  Rx<StockListModel> stockListModel=StockListModel().obs;
+  Rx<DailyReportModel> dailyReportModel=DailyReportModel().obs;
+  Rx<DashboardModel> dashboardModel=DashboardModel().obs;
+
+
 
 
   Future<void> initApp(BuildContext context) async {
@@ -96,10 +101,16 @@ class PublicController extends GetxController{
   }
 
   Future<void>getDailyReportModelList()async{
-    await helper.allStockReportList();
+    await helper.allDailyReportList();
+    loading.value =false;
     update();
   }
 
+  Future<void>getDashboardModelList()async{
+    await helper.allDashboardList();
+    loading.value =false;
+    update();
+  }
 
 
 }

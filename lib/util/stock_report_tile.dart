@@ -9,7 +9,7 @@ import '../widgets/decoration.dart';
 
 class StockReportTile extends StatelessWidget {
   const StockReportTile({Key? key,required this.stockModel}) : super(key: key);
-  final StockReport stockModel;
+  final StockM stockModel;
 
   @override
   Widget build(BuildContext context) {

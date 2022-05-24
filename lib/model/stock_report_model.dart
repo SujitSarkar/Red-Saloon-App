@@ -1,30 +1,32 @@
 // To parse this JSON data, do
 //
-//     final stockReportList = stockReportListFromJson(jsonString);
+//     final stockListModel = stockListModelFromJson(jsonString);
 
 import 'dart:convert';
 
-StockReportList stockReportListFromJson(String str) => StockReportList.fromJson(json.decode(str));
+StockListModel stockListModelFromJson(String str) => StockListModel.fromJson(json.decode(str));
 
 
-class StockReportList {
-  StockReportList({
+
+class StockListModel {
+  StockListModel({
     this.success,
     this.data,
   });
 
   bool? success;
-  List<StockReport>? data;
+  List<StockM>? data;
 
-  factory StockReportList.fromJson(Map<String, dynamic> json) => StockReportList(
+  factory StockListModel.fromJson(Map<String, dynamic> json) => StockListModel(
     success: json["success"],
-    data: List<StockReport>.from(json["data"].map((x) => StockReport.fromJson(x))),
+    data: List<StockM>.from(json["data"].map((x) => StockM.fromJson(x))),
   );
+
 
 }
 
-class StockReport {
-  StockReport({
+class StockM {
+  StockM({
     this.id,
     this.name,
     this.stocks,
@@ -34,11 +36,12 @@ class StockReport {
   String? name;
   List<Stock>? stocks;
 
-  factory StockReport.fromJson(Map<String, dynamic> json) => StockReport(
+  factory StockM.fromJson(Map<String, dynamic> json) => StockM(
     id: json["id"],
     name: json["name"],
     stocks: List<Stock>.from(json["stocks"].map((x) => Stock.fromJson(x))),
   );
+
 
 }
 

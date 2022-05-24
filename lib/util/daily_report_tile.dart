@@ -10,7 +10,7 @@ import '../widgets/decoration.dart';
 
 class DailyReportTile extends StatelessWidget {
   const DailyReportTile({Key? key,required this.dailyReport}) : super(key: key);
-  final DailyReport dailyReport;
+  final DailyM dailyReport;
 
   @override
   Widget build(BuildContext context) {

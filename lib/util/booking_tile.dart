@@ -37,7 +37,7 @@ class BookingListTile extends StatelessWidget {
             const TextSpan(text: 'রোল: ', style: TextStyle(fontWeight: FontWeight.bold)),
             TextSpan(text:  'tim'),
             const TextSpan(text: 'ফ্যাব্রিক প্রাপ্তির তারিখ: ', style: TextStyle(fontWeight: FontWeight.bold)),
-            TextSpan(text: DateFormat('dd-MMM-yyyy').format(bModel.updatedAt!)),
+            // TextSpan(text: DateFormat('dd-MMM-yyyy').format(bModel.updatedAt!)),
           ],
         ),
       ),

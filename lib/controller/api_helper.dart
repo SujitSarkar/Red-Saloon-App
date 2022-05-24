@@ -7,11 +7,13 @@ import 'package:red_saloon/controller/public_controller.dart';
 import 'package:red_saloon/model/service_list-model.dart';
 import 'package:red_saloon/model/service_list-model.dart';
 
+import '../model/booking_list_model.dart';
 import '../model/customer_model.dart';
 import '../model/customer_model.dart';
 import '../model/customer_model.dart';
 import '../model/customer_model.dart';
 import '../model/daily_report_model.dart';
+import '../model/dashboard_model.dart';
 import '../model/expense_list_model.dart';
 import '../model/login_model.dart';
 import '../model/product_model.dart';
@@ -129,7 +131,7 @@ class ApiHelper {
       var response = await http.post(Uri.parse(Variables.baseUrl + 'bookings'));
 
       if (response.statusCode == 200) {
-        PublicController.pc.expenseList(expenseListFromJson(response.body));
+        PublicController.pc.bookingListModel(bookingListModelFromJson(response.body));
       } else {
         showToast("Failed to get proudct");
       }
@@ -146,7 +148,7 @@ class ApiHelper {
       var response = await http.post(Uri.parse(Variables.baseUrl + 'stock-report'));
 
       if (response.statusCode == 200) {
-        PublicController.pc.stockReportListModel(stockReportListFromJson(response.body));
+        PublicController.pc.stockListModel(stockListModelFromJson(response.body));
       } else {
         showToast("Failed to get proudct");
       }
@@ -161,9 +163,10 @@ class ApiHelper {
   Future<void> allDailyReportList() async {
     try {
       var response = await http.post(Uri.parse(Variables.baseUrl + 'daily-report'));
-
+      print(response.body);
       if (response.statusCode == 200) {
-        PublicController.pc.dailyReportList(dailyReportListFromJson(response.body));
+        PublicController.pc.dailyReportModel(dailyReportModelFromJson(response.body));
+        print(response.body);
       } else {
         showToast("Failed to get proudct");
       }
@@ -171,7 +174,29 @@ class ApiHelper {
       showToast("Network Failed");
     } catch (error) {
       showToast(error.toString());
+      print(error.toString());
     }
   }
+
+  Future<void> allDashboardList() async {
+    try {
+      var response = await http.post(Uri.parse(Variables.baseUrl + 'dashboard'));
+      print(response.body);
+      if (response.statusCode == 200) {
+        PublicController.pc.dashboardModel(dashboardModelFromJson(response.body));
+        print(response.body);
+      } else {
+        showToast("Failed to get proudct");
+      }
+    } on SocketException {
+      showToast("Network Failed");
+    } catch (error) {
+      showToast(error.toString());
+      print(error.toString());
+    }
+  }
+
+
+
 
 }

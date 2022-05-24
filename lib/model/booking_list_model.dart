@@ -97,9 +97,9 @@ class BList {
   String? status;
   DateTime? createdAt;
   DateTime? updatedAt;
-  dynamic reference;
+  String? reference;
   String? advance;
-  dynamic customer;
+  Customer? customer;
   List<Bookingdetail>? bookingdetail;
 
   factory BList.fromJson(Map<String, dynamic> json) => BList(
@@ -112,7 +112,7 @@ class BList {
     updatedAt: DateTime.parse(json["updated_at"]),
     reference: json["reference"],
     advance: json["advance"],
-    customer: json["customer"],
+    customer: Customer.fromJson(json["customer"]),
     bookingdetail: List<Bookingdetail>.from(json["bookingdetail"].map((x) => Bookingdetail.fromJson(x))),
   );
 
@@ -134,7 +134,7 @@ class Bookingdetail {
   String? serviceId;
   DateTime? createdAt;
   DateTime? updatedAt;
-  dynamic service;
+  Service? service;
 
   factory Bookingdetail.fromJson(Map<String, dynamic> json) => Bookingdetail(
     id: json["id"],
@@ -142,10 +142,70 @@ class Bookingdetail {
     serviceId: json["service_id"],
     createdAt: DateTime.parse(json["created_at"]),
     updatedAt: DateTime.parse(json["updated_at"]),
-    service: json["service"],
+    service: Service.fromJson(json["service"]),
   );
 
 
+}
+
+class Service {
+  Service({
+    this.id,
+    this.name,
+    this.price,
+  });
+
+  int? id;
+  String? name;
+  String? price;
+
+  factory Service.fromJson(Map<String, dynamic> json) => Service(
+    id: json["id"],
+    name: json["name"],
+    price: json["price"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+    "price": price,
+  };
+}
+
+class Customer {
+  Customer({
+    this.id,
+    this.name,
+    this.email,
+    this.mobile,
+    this.membershipId,
+    this.address,
+  });
+
+  int? id;
+  String? name;
+  dynamic email;
+  String? mobile;
+  dynamic membershipId;
+  dynamic address;
+
+  factory Customer.fromJson(Map<String, dynamic> json) => Customer(
+    id: json["id"],
+    name: json["name"],
+    email: json["email"],
+    mobile: json["mobile"],
+    membershipId: json["membership_id"],
+    address: json["address"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+    "email": email,
+    "mobile": mobile,
+    "membership_id": membershipId,
+    "address": address,
+  };
 }
 
 class Link {

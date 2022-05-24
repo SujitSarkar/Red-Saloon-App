@@ -77,8 +77,8 @@ class _BookingPageState extends State<BookingPage> {
               ),
               child: Row(
                 children: [
-                  Text("Total Expense",style: StDecoration.boldTextStyle.copyWith(color: Colors.white),),
-                  Expanded(child: Text('${pc.expenseList.value.data!=null? pc.expenseList.value.data!.length:''}',textAlign: TextAlign.end,
+                  Text("Total Booking",style: StDecoration.boldTextStyle.copyWith(color: Colors.white),),
+                  Expanded(child: Text('${pc.bookingListModel.value.data!=null? pc.bookingListModel.value.data!.data!.length: '0'}',textAlign: TextAlign.end,
                     style: StDecoration.boldTextStyle.copyWith(color: Colors.white),))
                 ],
               ),
@@ -100,7 +100,7 @@ class _BookingPageState extends State<BookingPage> {
           padding: EdgeInsets.symmetric(horizontal: dSize(.04),vertical: dSize(.02)),
           itemCount: pc.bookingListModel.value.data!.data!.length,
           itemBuilder: (context,index)=>BookingListTile(bModel: pc.bookingListModel.value.data!.data![index]),
-          separatorBuilder: (context,index)=>SizedBox(height: dSize(0.04))):Container()
+          separatorBuilder: (context,index)=>SizedBox(height: dSize(0.04))):Center(child: CircularProgressIndicator(),)
 
 
 

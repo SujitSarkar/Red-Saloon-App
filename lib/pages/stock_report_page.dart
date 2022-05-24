@@ -34,7 +34,7 @@ class _StockReportPageState extends State<StockReportPage> {
   }
 
   Future<void> _initData()async{
-    if(PublicController.pc.stockReportListModel.value.data==null){
+    if(PublicController.pc.stockListModel.value.data==null){
       await PublicController.pc.getStockReportModelList();
     }
   }
@@ -73,7 +73,7 @@ class _StockReportPageState extends State<StockReportPage> {
               child: Row(
                 children: [
                   Text('Total Service:',style: StDecoration.boldTextStyle.copyWith(color:Colors.white)),
-                  Expanded(child: Text('${pc.stockReportListModel.value.data!=null? pc.stockReportListModel.value.data!.length:''}',textAlign: TextAlign.end,
+                  Expanded(child: Text('${pc.stockListModel.value.data!=null? pc.stockListModel.value.data!.length:''}',textAlign: TextAlign.end,
                       style: StDecoration.boldTextStyle.copyWith(color:Colors.white)))
                 ],
               ),
@@ -88,12 +88,12 @@ class _StockReportPageState extends State<StockReportPage> {
   Widget _bodyUI(PublicController pc)=>RefreshIndicator(
     onRefresh: ()async=> await pc.getStockReportModelList(),
     backgroundColor: Colors.white,
-    child: pc.stockReportListModel.value.data!=null
+    child: pc.stockListModel.value.data!=null
         ?ListView.separated(
         physics: const BouncingScrollPhysics(),
         padding: EdgeInsets.symmetric(horizontal: dSize(.04),vertical: dSize(.02)),
-        itemCount: pc.stockReportListModel.value.data!.length,
-        itemBuilder: (context, index)=> StockReportTile(stockModel: pc.stockReportListModel.value.data![index]),
+        itemCount: pc.stockListModel.value.data!.length,
+        itemBuilder: (context, index)=> StockReportTile(stockModel: pc.stockListModel.value.data![index]),
         separatorBuilder: (context, index)=>SizedBox(height: dSize(.04))):Container(),
   );
 
