@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                   if(val==1){
                     Get.to(()=> ChangePasswordPage());
                   } else if(val==2){
-                    //await pc.logout();
+                    await pc.logout();
                   }
                 },
                 itemBuilder: (context) {

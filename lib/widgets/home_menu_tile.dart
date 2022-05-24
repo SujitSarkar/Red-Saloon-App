@@ -2,6 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controller/public_controller.dart';
 import '../model/home_menu_model.dart';
+import '../pages/booking_page.dart';
+import '../pages/customer_list_page.dart';
+import '../pages/daily_report_page.dart';
+import '../pages/expense_page.dart';
+import '../pages/product_page.dart';
+import '../pages/service_page.dart';
+import '../pages/stock_report_page.dart';
+
 import '../variables/config.dart';
 
 
@@ -14,7 +22,30 @@ class HomeMenuTile extends StatelessWidget {
     return GetBuilder<PublicController>(
       builder: (pc) {
         return  InkWell(
-            onTap: ()async{},
+            onTap: ()async{
+              if(model.title=='Customers'){
+                Get.to(()=>const AllCustomerPage());
+              }
+              else if(model.title=="Products"){
+                Get.to(()=>const AllProductPage());
+              }
+              else if (model.title=='Services'){
+                Get.to(()=>const ServicePage());
+              }
+              else if (model.title=='Expense'){
+                Get.to(()=> AllExpensePage());
+              }
+              else if (model.title=='Booking'){
+                Get.to(()=>BookingPage());
+              }
+              else if (model.title=='Stocks'){
+                Get.to(()=>StockReportPage());
+              }
+              else if (model.title=='Daily Report'){
+                Get.to(()=>DailyReportpage());
+              }
+
+            },
             child: Container(
               alignment: Alignment.center,
               padding: EdgeInsets.all(dSize(.04)),
