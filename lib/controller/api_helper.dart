@@ -126,6 +126,25 @@ class ApiHelper {
     }
   }
 
+  Future<void> searchExpenseList(Map<String,String> map) async {
+    try {
+      var response = await http.post(
+        Uri.parse(Variables.baseUrl + 'expenses'),
+        body: map
+      );
+      // print(response.body);
+      if (response.statusCode == 200) {
+        PublicController.pc.expenseList(expenseListFromJson(response.body));
+      } else {
+        showToast("Failed to Search");
+      }
+    } on SocketException {
+      showToast("Network Failed");
+    } catch (error) {
+      showToast(error.toString());
+    }
+  }
+
   Future<void> allBookingList() async {
     try {
       var response = await http.post(Uri.parse(Variables.baseUrl + 'bookings'));

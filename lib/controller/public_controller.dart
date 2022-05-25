@@ -90,6 +90,13 @@ class PublicController extends GetxController{
     update();
   }
 
+  Future<void>searchExpenseList(Map<String,String> map)async{
+    loading(true);update();
+    await helper.searchExpenseList(map);
+    loading(false);
+    update();
+  }
+
   Future<void>getBookingList()async{
     await helper.allBookingList();
     update();

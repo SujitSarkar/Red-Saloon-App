@@ -138,8 +138,8 @@ class _LoginPageState extends State<LoginPage> {
                             text: TextSpan(
                               style: TextStyle(color: const Color(0xffFF002D),fontSize: dSize(.06),fontWeight: FontWeight.w900),
                               children: const <TextSpan>[
-                                TextSpan(text: 'Tashfia'),
-                                TextSpan(text: ' Export', style: TextStyle(color: Colors.purple)),
+                                TextSpan(text: 'Red'),
+                                TextSpan(text: ' Saloon', style: TextStyle(color: Colors.purple)),
                               ],
                             ),
                           )
